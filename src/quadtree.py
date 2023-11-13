@@ -1,12 +1,17 @@
 from __future__ import annotations
 import pygame
 
-from pygame.locals import *
+from pygame.locals import QUIT
 
 filename = "files/quadtree.txt"
 
 class QuadTree:
-    def __init__(self, hg: bool | QuadTree, hd: bool | QuadTree, bd: bool | QuadTree, bg: bool | QuadTree):
+    """
+    Definition of quadtree object
+    """
+
+    def __init__(self, hg: bool | QuadTree, hd: bool | QuadTree, bd: bool \
+        | QuadTree, bg: bool | QuadTree):
         self.hg = hg
         self.hd = hd
         self.bd = bd
@@ -14,12 +19,22 @@ class QuadTree:
 
     @property
     def depth(self) -> int:
+        """
+        Returns the depth of the current node in a hierarchical structure.
+
+        If the current node has no children (hg is None), the depth is 0.
+        Otherwise, the depth is calculated as 1 plus the maximum depth among the
+        left upper (hg), right upper (hd), right bottom (bd), and left bottom (bg) children.
+
+        Returns:
+            int: The depth of the current node in the hierarchy.
+        """
         if self.hg is None:
             return 0
         return 1 + max(self.hg.depth, self.hd.depth, self.bd.depth, self.bg.depth)
 
     @staticmethod
-    def fromFile(filename: str) -> QuadTree:
+    def from_file(filename: str) -> QuadTree:
         """
         Creates and returns a QuadTree instance from serialized data in the specified file.
 
@@ -31,20 +46,22 @@ class QuadTree:
 
         Raises:
         - IOError: If the file cannot be opened or read.
-        - ValueError: If the file data cannot be properly evaluated or if the structure is not compliant with a QuadTree.
+        - ValueError: If the file data cannot be properly evaluated
+        or if the structure is not compliant with a QuadTree.
         - Exception: Any other exception during file opening or data evaluation.
         """
-        with open(filename, 'r') as file:
+        with open(filename, 'r', encoding="utf-8") as file:
             data = eval(file.read())
-        return QuadTree.fromList(data)
+        return QuadTree.from_list(data)
 
     @staticmethod
-    def fromList(data: list) -> QuadTree:
+    def from_list(data: list) -> QuadTree:
         """
          Creates and returns a QuadTree instance from a list representing a hierarchical structure.
 
         Args:
-        - data (list): A list representing a hierarchical structure of QuadTree nodes. Should have four elements.
+        - data (list): A list representing a hierarchical structure of
+        QuadTree nodes. Should have four elements.
 
         Returns:
         - QuadTree: QuadTree instance created from the list data.
@@ -57,22 +74,22 @@ class QuadTree:
             if len(data) == 4:
                 hg, hd, bd, bg = data
                 return QuadTree(
-                    QuadTree.fromList(hg), QuadTree.fromList(hd),
-                    QuadTree.fromList(bd), QuadTree.fromList(bg)
+                    QuadTree.from_list(hg), QuadTree.from_list(hd),
+                    QuadTree.from_list(bd), QuadTree.from_list(bg)
                 )
-        return QuadTree(None, None, None, None)
-        
+        return QuadTree(None,  None,  None,  None)
+
     @staticmethod
-    def fromFileToDisplay(filename: str) -> QuadTree:
+    def from_file_to_display(filename: str) -> QuadTree:
         """
         TODO : Temporary method to dislay a quadtree.
         """
         with open(filename, 'r') as file:
             data = eval(file.read())
-        return QuadTree.fromListToDisplay(data)
+        return QuadTree.from_list_to_display(data)
 
     @staticmethod
-    def fromListToDisplay(data: list) -> QuadTree:
+    def from_list_to_display(data: list) -> QuadTree:
         """
         TODO : Temporary method to dislay a quadtree.
         """
@@ -80,14 +97,16 @@ class QuadTree:
             if len(data) == 4:
                 hg, hd, bd, bg = data
                 return QuadTree(
-                    QuadTree.fromListToDisplay(hg), QuadTree.fromListToDisplay(hd),
-                    QuadTree.fromListToDisplay(bd), QuadTree.fromListToDisplay(bg)
+                    QuadTree.from_list_to_display(hg), QuadTree.from_list_to_display(hd),
+                    QuadTree.from_list_to_display(bd), QuadTree.from_list_to_display(bg)
                 )
         else:
             return bool(data)
 
 class QuadTreeDisplay:
-
+    """
+    Graphical representation of quadtree
+    """
     def paint(self, surface, quadtree, x, y, size):
         if isinstance(quadtree, QuadTree):
             half_size = size // 2
@@ -100,24 +119,24 @@ class QuadTreeDisplay:
             pygame.draw.rect(surface, color, (x, y, size, size))
 
 if __name__ == '__main__':
-    window_size = 300
+    WINDOWS_SIZE = 300
     pygame.init()
-    screen = pygame.display.set_mode((window_size, window_size))
+    screen = pygame.display.set_mode((WINDOWS_SIZE, WINDOWS_SIZE))
     pygame.display.set_caption("Quadtree")
 
-    quadtree = QuadTree.fromFileToDisplay(filename)
+    quadtree = QuadTree.from_file_to_display(filename)
 
-    quadtree_display = QuadTreeDisplay()  
+    quadtree_display = QuadTreeDisplay()
 
-    running = True
-    while running:
+    RUNNING = True
+    while RUNNING:
         for event in pygame.event.get():
             if event.type == QUIT:
-                running = False
+                RUNNING = False
 
         screen.fill((0, 0, 0))
 
-        quadtree_display.paint(screen, quadtree, 0, 0, window_size)
+        quadtree_display.paint(screen, quadtree, 0, 0, WINDOWS_SIZE)
         pygame.display.flip()
 
     pygame.quit()
