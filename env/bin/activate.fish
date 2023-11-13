@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/ptitlu/Documents/Cours/Python/PYTHON EXO FINIS PAS TOUCHER/Python/python-exercices-ludiques-arbre-quaternaire/env"
+set -gx VIRTUAL_ENV "/home/ptitlu/Documents/Cours/Python/python-exercices-ludiques-arbre-quaternaire/env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

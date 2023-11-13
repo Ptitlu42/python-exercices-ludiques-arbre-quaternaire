@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/home/ptitlu/Documents/Cours/Python/PYTHON EXO FINIS PAS TOUCHER/Python/python-exercices-ludiques-arbre-quaternaire/env/bin/python" "$0" "$@"
-' '''
+#!/home/ptitlu/Documents/Cours/Python/python-exercices-ludiques-arbre-quaternaire/env/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
