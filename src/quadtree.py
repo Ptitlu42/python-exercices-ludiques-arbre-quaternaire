@@ -20,12 +20,39 @@ class QuadTree:
 
     @staticmethod
     def fromFile(filename: str) -> QuadTree:
+        """
+        Creates and returns a QuadTree instance from serialized data in the specified file.
+
+        Args:
+        - filename (str): The path to the file containing serialized data.
+
+        Returns:
+        - QuadTree: QuadTree instance created from the file data.
+
+        Raises:
+        - IOError: If the file cannot be opened or read.
+        - ValueError: If the file data cannot be properly evaluated or if the structure is not compliant with a QuadTree.
+        - Exception: Any other exception during file opening or data evaluation.
+        """
         with open(filename, 'r') as file:
             data = eval(file.read())
         return QuadTree.fromList(data)
 
     @staticmethod
     def fromList(data: list) -> QuadTree:
+        """
+         Creates and returns a QuadTree instance from a list representing a hierarchical structure.
+
+        Args:
+        - data (list): A list representing a hierarchical structure of QuadTree nodes. Should have four elements.
+
+        Returns:
+        - QuadTree: QuadTree instance created from the list data.
+
+        Raises:
+        - ValueError: If the input data is not a list or does not have exactly four elements.
+        
+        """
         if isinstance(data, list):
             if len(data) == 4:
                 hg, hd, bd, bg = data
@@ -37,12 +64,18 @@ class QuadTree:
         
     @staticmethod
     def fromFileToDisplay(filename: str) -> QuadTree:
+        """
+        TODO : Temporary method to dislay a quadtree.
+        """
         with open(filename, 'r') as file:
             data = eval(file.read())
         return QuadTree.fromListToDisplay(data)
 
     @staticmethod
     def fromListToDisplay(data: list) -> QuadTree:
+        """
+        TODO : Temporary method to dislay a quadtree.
+        """
         if isinstance(data, list):
             if len(data) == 4:
                 hg, hd, bd, bg = data

@@ -1,31 +1,44 @@
-**Objectif:**
+## Objective:
 
-- A partir du fichier files/quadtree.txt, générez le QuadTree associé.
-Puis, réalisez une interface graphique en utilisant la classe TkQuadTree, permettant de la représenter.
+- Starting from the file files/quadtree.txt, generate the associated QuadTree. Then, create a graphical interface using the TkQuadTree class to represent it.
 
-- Bonus :
-Remplacez les valeurs binaires des feuilles par des valeurs numériques, combinez celà à un tileset.
-Et voilà, vous avez généré votre tilemap par le biais d'un quadtree.
+- Bonus:
+Replace the binary values of the leaves with numerical values, combine this with a tileset. And there you have it, you have generated your tilemap through a quadtree.
 
-**Définition quadtree:**
+**Definition of a QuadTree:**
 
-Un quadtree ou arbre quaternaire (arbre Q) est une structure de données de type arbre dans laquelle chaque nœud a quatre fils. Les quadtrees sont le plus souvent utilisés pour partitionner un espace bidimensionnel en le subdivisant récursivement en quatre nœuds.
+A QuadTree, or quaternary tree (Q-tree), is a tree data structure in which each node has four children. QuadTrees are most commonly used to partition a two-dimensional space by recursively subdividing it into four nodes.
 
 ![img.png](files/quadtree.png)
 
-Il existe plusieurs types de quadtree. Dans notre cas il s'agit d'un quadtree "region".
+There are several types of QuadTrees. In our case, it is a "region" QuadTree.
 
-Le quadtree «région» représente une partition de l'espace en deux dimensions en décomposant la région en quatre quadrants égaux, puis chaque quadrant en quatre sous-quadrants, et ainsi de suite, avec chaque «nœud terminal» comprenant des données correspondant à une sous-région spécifique. Chaque nœud de l'arbre a exactement : soit quatre enfants, soit aucun (cas d'un nœud terminal).
+The "region" QuadTree represents a partition of the two-dimensional space by breaking down the region into four equal quadrants, then each quadrant into four sub-quadrants, and so on, with each "leaf node" containing data corresponding to a specific sub-region. Each tree node has exactly either four children or none (in the case of a leaf node).
 
-Chaque Noeud comportant quatre éléments. Il s'agit d'une technique connue pour l'encodage d'images.  Pour simplifier, les images sont carrées, de couleur noir et blanc
-et de côté 2^n.
+Each node has four elements, and this is a well-known technique for image encoding. To simplify, the images are square, in black and white, and have sides of 2^n.
 
-**Instalation du projet:**
+**Project Installation:**
 
-1 - Clôner le dépôt : 
+- 1 - Clone the repository:
 
-```git clone  https://gitlab.com/docusland-courses/python/python-exercices-ludiques.git``` 
+```git clone https://github.com/Ptitlu42/python-exercices-ludiques-arbre-quaternaire.git```
 
-2 - Se déplacer dans le dossier:
+- 2 - Navigate to the folder:
 
-```cd /python```
+```cd python-exercices-ludiques-arbre-quaternaire```
+
+- 3 - Activate the virtual environment:
+
+```source env/bin/activate```
+
+- 4 - Run the tests:
+
+```pytest -m tests/test_quadtree.py```
+
+  **Graphical Visualization:**
+
+- To choose the *txt* file to use, change the *filename* variable (line 6 of /src/quadtree.py)
+
+- Run the Python file:
+
+```python3 src/quadtree.py```
