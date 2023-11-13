@@ -1,4 +1,4 @@
-#!/home/ptitlu/Documents/Cours/Python/python-exercices-ludiques-arbre-quaternaire/env/bin/python
+#!/home/ptitlu/Documents/Cours/Python/quadtree/env/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

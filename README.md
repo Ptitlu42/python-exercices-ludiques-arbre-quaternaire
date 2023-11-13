@@ -33,7 +33,7 @@ Each node has four elements, and this is a well-known technique for image encodi
 
 - 4 - Run the tests:
 
-```pytest -m tests/test_quadtree.py```
+```pytest tests/test_quadtree.py```
 
   **Graphical Visualization:**
 
